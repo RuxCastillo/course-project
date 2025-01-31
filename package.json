@@ -1,0 +1,20 @@
+{
+  "name": "course-project",
+  "version": "1.0.0",
+  "description": "Itransition Internship course projec",
+  "homepage": "https://github.com/RuxCastillo/course-project#readme",
+  "bugs": {
+    "url": "https://github.com/RuxCastillo/course-project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RuxCastillo/course-project.git"
+  },
+  "license": "ISC",
+  "author": "Ruben Lopez del Castillo",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
