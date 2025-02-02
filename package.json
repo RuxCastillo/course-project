@@ -16,7 +16,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start:server": "nodemon backend/server.js"
+		"start:server": "nodemon backend/server.js",
+		"postinstall": "prisma generate"
 	},
 	"dependencies": {
 		"@prisma/client": "^6.3.0",
