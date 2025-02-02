@@ -6,6 +6,7 @@
 
 * {
   margin: 0;
+  font-family: sans-serif;
 }
 
 body {
@@ -39,8 +40,127 @@ h6 {
   overflow-wrap: break-word;
 }
 
-div {
-  border: 1px solid blue;
+.start__main {
+  height: 100vh;
+  display: flex;
+}
+
+.start__login {
+  width: 50%;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+}
+@media (max-width: 1024px) {
+  .start__login {
+    padding: 2rem;
+    width: 100%;
+  }
+}
+
+.start__title {
+  display: none;
+}
+
+.start__logo {
+  width: 200px;
+}
+
+.start__image {
+  width: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+@media (max-width: 1024px) {
+  .start__image {
+    display: none;
+  }
+}
+
+.login__form {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  justify-content: center;
+  align-items: start;
+  min-width: 365px;
+  max-width: 500px;
+  text-align: start;
+}
+
+.login__title {
+  justify-self: start;
+  margin-bottom: 4rem;
+}
+
+.login__sign {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.login__inputs {
+  border: 1px solid grey;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.login__label {
+  font-size: 0.875rem;
+  color: grey;
+}
+
+.login__input {
+  outline: none;
+  border: none;
+}
+
+.login__icon {
+  position: absolute;
+  transform: translateY(-50%);
+  right: 1rem;
+  top: 50%;
+  color: grey;
+}
+
+.login__checkboxs {
+  margin-bottom: 1rem;
+}
+
+.login__checkbox {
+  margin: 0.5rem;
+}
+
+.login__button {
+  border-radius: 8px;
+  background-color: blue;
+  color: white;
+  padding: 0.5rem;
+  width: 100%;
+  border: none;
+}
+.login__button:hover {
+  background-color: darkblue;
+}
+
+.login__account {
+  height: 20%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+}
+
+.login__account--p {
+  margin-right: 0.5rem;
 }
 
 /*# sourceMappingURL=main.css.map */

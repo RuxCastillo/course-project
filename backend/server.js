@@ -9,6 +9,8 @@ import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import prisma from './client.js';
+import registerRouter from './routes/register.js';
+import loginRouter from './routes/login.js';
 
 env.config();
 
@@ -45,6 +47,9 @@ const db = new pg.Pool({
 db.connect().catch((err) =>
 	console.error('Error de node a la base de datos', err)
 );
+
+app.use(registerRouter);
+app.use(loginRouter);
 // Ruta para el backend
 app.get('/api', (req, res) => {
 	res.json({ message: 'Hello from Express!' });
