@@ -1,28 +1,32 @@
 {
-  "name": "course-project",
-  "version": "1.0.0",
-  "description": "Itransition Internship course projec",
-  "homepage": "https://github.com/RuxCastillo/course-project#readme",
-  "bugs": {
-    "url": "https://github.com/RuxCastillo/course-project/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RuxCastillo/course-project.git"
-  },
-  "license": "ISC",
-  "author": "Ruben Lopez del Castillo",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2",
-    "pg": "^8.13.1"
-  }
+	"name": "course-project",
+	"version": "1.0.0",
+	"description": "Itransition Internship course projec",
+	"homepage": "https://github.com/RuxCastillo/course-project#readme",
+	"bugs": {
+		"url": "https://github.com/RuxCastillo/course-project/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/RuxCastillo/course-project.git"
+	},
+	"license": "ISC",
+	"author": "Ruben Lopez del Castillo",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"@prisma/client": "^6.3.0",
+		"bcrypt": "^5.1.1",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.7",
+		"express": "^4.21.2",
+		"jsonwebtoken": "^9.0.2",
+		"pg": "^8.13.1"
+	},
+	"devDependencies": {
+		"prisma": "^6.3.0"
+	}
 }

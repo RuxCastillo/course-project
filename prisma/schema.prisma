@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Puedes cambiarlo a mysql o sqlite si prefieres
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int        @id @default(autoincrement())
+  username      String     @unique
+  email         String     @unique
+  password      String
+  role          String     @default("user") // 'user' o 'admin'
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
+  templates     Template[] @relation("UserTemplates")
+  forms         Form[]     @relation("UserForms")
+  comments      Comment[]  @relation("UserComments")
+  likes         Like[]     @relation("UserLikes")
+  theme         String     @default("light") // 'light' o 'dark'
+  language      String     @default("en")    // 'en', 'es', 'pl', etc.
+}
+
+model Template {
+  id            Int        @id @default(autoincrement())
+  title         String
+  description   String
+  topic         String
+  image_url     String?
+  is_public     Boolean    @default(false)
+  created_by    Int
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
+  creator       User       @relation("UserTemplates", fields: [created_by], references: [id])
+  questions     Question[]
+  forms         Form[]
+  templateTags  TemplateTag[]
+  comments      Comment[]
+  likes         Like[]
+}
+
+model TemplateTag {
+  id          Int      @id @default(autoincrement())
+  template_id Int
+  tag_id      Int
+  template    Template @relation(fields: [template_id], references: [id])
+  tag         Tag      @relation(fields: [tag_id], references: [id])
+
+  @@unique([template_id, tag_id])
+}
+
+model Tag {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique
+  templateTags TemplateTag[]
+}
+
+model Question {
+  id            Int      @id @default(autoincrement())
+  template_id   Int
+  question_type String   // 'text', 'number', 'checkbox', 'multiline_text'
+  title         String
+  description   String?
+  is_required   Boolean  @default(false)
+  order         Int
+  template      Template @relation(fields: [template_id], references: [id])
+  answers       Answer[]
+}
+
+model Form {
+  id          Int      @id @default(autoincrement())
+  template_id Int
+  user_id     Int
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  template    Template @relation(fields: [template_id], references: [id])
+  user        User     @relation("UserForms", fields: [user_id], references: [id])
+  answers     Answer[]
+}
+
+model Answer {
+  id             Int      @id @default(autoincrement())
+  form_id        Int
+  question_id    Int
+  answer_text    String?
+  answer_number  Int?
+  answer_checkbox Boolean?
+  form           Form     @relation(fields: [form_id], references: [id])
+  question       Question @relation(fields: [question_id], references: [id])
+}
+
+model Comment {
+  id          Int      @id @default(autoincrement())
+  template_id Int
+  user_id     Int
+  comment_text String
+  created_at  DateTime @default(now())
+  template    Template @relation(fields: [template_id], references: [id])
+  user        User     @relation("UserComments", fields: [user_id], references: [id])
+}
+
+model Like {
+  id          Int      @id @default(autoincrement())
+  template_id Int
+  user_id     Int
+  created_at  DateTime @default(now())
+  template    Template @relation(fields: [template_id], references: [id])
+  user        User     @relation("UserLikes", fields: [user_id], references: [id])
+
+  @@unique([template_id, user_id]) // Un usuario solo puede dar like una vez por plantilla
+}
