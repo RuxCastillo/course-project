@@ -1,4 +1,5 @@
 import express from 'express';
+import checkBlockedEmail from '../middleware/checkBlockedEmail.js';
 const router = express.Router();
 
 router.post('/api/login', checkBlockedEmail, async (req, res) => {

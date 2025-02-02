@@ -5,7 +5,6 @@ import { fileURLToPath } from 'url';
 import pg from 'pg';
 import env from 'dotenv';
 import cors from 'cors';
-import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import prisma from './client.js';
@@ -60,48 +59,12 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../frontend/dist', 'index.html'));
 });
 
-async function authenticateToken(req, res, next) {
-	const authHeader = req.headers['authorization'];
-	const token = authHeader && authHeader.split(' ')[1];
-
-	if (!token) return res.sendStatus(401);
-
-	jwt.verify(token, process.env.JWT_SECRET, async (err, user) => {
-		if (err) return res.sendStatus(403);
-		req.user = user;
-		next();
-	});
-}
-
 export async function checkBlocked(req, res, next) {
 	const userId = req.user.id;
 	console.log(userId, 'userId');
 
 	try {
 		const userResult = await db.query('SELECT * FROM task4 WHERE id = $1', [
-			userId,
-		]);
-		const dbUser = userResult.rows[0];
-		console.log(dbUser, 'dbUser');
-
-		if (!dbUser || dbUser.blocked) {
-			return res.sendStatus(403);
-		}
-
-		next();
-	} catch (err) {
-		console.error('Error checking user blocked status:', err);
-		res
-			.status(500)
-			.json({ message: 'Error checking user blocked status', error: err });
-	}
-}
-export async function checkBlockedEmail(req, res, next) {
-	const userId = req.body.email;
-	console.log(userId, 'userId');
-
-	try {
-		const userResult = await db.query('SELECT * FROM task4 WHERE email = $1', [
 			userId,
 		]);
 		const dbUser = userResult.rows[0];
