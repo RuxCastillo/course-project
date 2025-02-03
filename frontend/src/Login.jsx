@@ -1,5 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalState } from './store/GlobalState';
+
+let API_URL = import.meta.env.VITE_API_URL;
+if (import.meta.env.PROD) {
+	API_URL = '';
+}
+console.log(API_URL);
 
 export default function Login({ handleSignIn }) {
 	const [showPassword, setShowPassword] = useState(false);
@@ -7,6 +14,7 @@ export default function Login({ handleSignIn }) {
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
 	const navigate = useNavigate();
+	const { state, dispatch } = useGlobalState();
 
 	function handleShowPassword() {
 		setShowPassword((prevState) => !prevState);
@@ -16,7 +24,7 @@ export default function Login({ handleSignIn }) {
 		e.preventDefault();
 
 		try {
-			const response = await fetch('/api/login', {
+			const response = await fetch(`${API_URL}/api/login`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -26,7 +34,9 @@ export default function Login({ handleSignIn }) {
 			if (response.ok) {
 				const data = await response.json();
 				localStorage.setItem('token', data.token);
-				navigate('/table');
+				console.log(localStorage);
+				dispatch({ type: 'LOGIN', payload: data.token });
+				navigate('/');
 			} else {
 				console.log('error en response.ok');
 			}

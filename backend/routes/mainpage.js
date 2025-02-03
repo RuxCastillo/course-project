@@ -1,4 +1,5 @@
 import express from 'express';
+import prisma from '../client.js';
 const router = express.Router();
 
 router.get('/api/templates', async (req, res) => {

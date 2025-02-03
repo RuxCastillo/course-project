@@ -11,8 +11,8 @@ console.log(API_URL);
 
 function App() {
 	const navigate = useNavigate();
-	const { isAuth } = useGlobalState();
-	const [latestTempates, setLatestTemplates] = useState([]);
+	const { state } = useGlobalState();
+	const [laestTempates, setLatestTemplates] = useState([]);
 	const [popularTemplates, setPopularTemplates] = useState([]);
 	const [tags, setTags] = useState([]);
 
@@ -24,7 +24,7 @@ function App() {
 				setLatestTemplates(data.latestTemplates);
 				setPopularTemplates(data.popularTemplates);
 				setTags(data.tags);
-				console.log(latestTempates, popularTemplates, tags);
+				console.log(data);
 			} catch (err) {
 				console.error('Error fetching templates:', err);
 			}
@@ -36,9 +36,11 @@ function App() {
 	return (
 		<main className="app__main">
 			<nav className="app__navbar">
-				<Link to="/login" className="app__sign">
-					Sign In/Register
-				</Link>
+				{!state.isAuth && (
+					<Link to="/login" className="app__sign">
+						Sign In/Register
+					</Link>
+				)}
 			</nav>
 
 			<h1 className="app__h1">Welcome to the app</h1>

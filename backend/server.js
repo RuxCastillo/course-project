@@ -10,6 +10,7 @@ import jwt from 'jsonwebtoken';
 import prisma from './client.js';
 import registerRouter from './routes/register.js';
 import loginRouter from './routes/login.js';
+import mainPageRouter from './routes/mainpage.js';
 
 env.config();
 
@@ -49,6 +50,7 @@ db.connect().catch((err) =>
 
 app.use(registerRouter);
 app.use(loginRouter);
+app.use(mainPageRouter);
 // Ruta para el backend
 app.get('/api', (req, res) => {
 	res.json({ message: 'Hello from Express!' });

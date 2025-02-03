@@ -1,15 +1,22 @@
 import express from 'express';
 import checkBlockedEmail from '../middleware/checkBlockedEmail.js';
+import prisma from '../client.js';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
 const router = express.Router();
 
-router.post('/api/login', checkBlockedEmail, async (req, res) => {
+//borre checkbloquedemail de aqui como middleware
+router.post('/api/login', async (req, res) => {
 	const { email, password, rememberMe } = req.body;
+	console.log(email, password, rememberMe);
 
 	try {
-		const result = await db.query('SELECT * FROM task4 WHERE email = $1', [
-			email,
-		]);
-		const user = result.rows[0];
+		const user = await prisma.user.findUnique({
+			where: {
+				email,
+			},
+		});
 
 		if (user && (await bcrypt.compare(password, user.password))) {
 			const expiresIn = rememberMe ? '7d' : '1h';
