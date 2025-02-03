@@ -33,6 +33,7 @@ export default function Login({ handleSignIn }) {
 			});
 			if (response.ok) {
 				const data = await response.json();
+				console.log('data', data);
 				localStorage.setItem('token', data.token);
 				console.log(localStorage);
 				dispatch({ type: 'LOGIN', payload: data.token });
