@@ -1,17 +1,26 @@
-export default function General({ handleTitle }) {
+export default function General({
+	handleTitle,
+	handleDescription,
+	addTag,
+	handleTagInput,
+	tag,
+}) {
 	return (
 		<section>
 			{' '}
 			<div>
 				<label htmlFor="title">Title</label>
-				<input type="text" onChange={handleTitle} />
+				<input type="text" onChange={handleTitle} id="title" />
 			</div>
 			<div>
 				<label htmlFor="description">Description</label>
-				<textarea></textarea>
+				<textarea onChange={handleDescription} id="description"></textarea>
 			</div>
 			<div>
-				<label htmlFor="tags">Tags</label>
+				<div>Tags</div>
+				<label htmlFor="tags">Add</label>
+				<input type="text" onChange={handleTagInput} value={tag} id="tags" />
+				<button onClick={addTag}>Add</button>
 			</div>
 			<div>
 				<label htmlFor="restricted">

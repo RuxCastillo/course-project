@@ -6,12 +6,13 @@ import Aggregation from './sectionsTemplate/Aggregation';
 
 export default function CreateTemplate() {
 	const [section, setSection] = useState('general');
+	const [tag, setTag] = useState('');
 	const [template, setTemplate] = useState({
 		title: '',
 		description: '',
 		tags: [],
 		restricted: false,
-		questions: [],
+		questions: {},
 		results: [],
 		aggregation: '',
 		create: true,
@@ -26,6 +27,29 @@ export default function CreateTemplate() {
 		console.log(template);
 	}
 
+	function handleDescription(event) {
+		setTemplate({ ...template, description: event.target.value });
+	}
+
+	function addTag() {
+		setTemplate({ ...template, tags: [...template.tags, tag] });
+		setTag('');
+	}
+
+	function handleTagInput(event) {
+		setTag(event.target.value);
+	}
+
+	function addQuestion() {
+		const question = {
+			question: '',
+			answer: '',
+			type: '',
+			id: 0,
+		};
+		setTemplate({ ...template, questions: [...template.questions, question] });
+	}
+
 	return (
 		<main>
 			<aside>
@@ -36,7 +60,15 @@ export default function CreateTemplate() {
 					aggregation of results
 				</div>
 			</aside>
-			{section === 'general' && <General handleTitle={handleTitle} />}
+			{section === 'general' && (
+				<General
+					handleTitle={handleTitle}
+					handleDescription={handleDescription}
+					addTag={addTag}
+					handleTagInput={handleTagInput}
+					tag={tag}
+				/>
+			)}
 			{section === 'questions' && <Questions />}
 			{section === 'results' && <Results />}
 			{section === 'aggregation' && <Aggregation />}
