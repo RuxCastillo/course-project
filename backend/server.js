@@ -11,6 +11,7 @@ import prisma from './client.js';
 import registerRouter from './routes/register.js';
 import loginRouter from './routes/login.js';
 import mainPageRouter from './routes/mainpage.js';
+import templatesRouter from './routes/template.js';
 
 env.config();
 
@@ -51,6 +52,7 @@ db.connect().catch((err) =>
 app.use(registerRouter);
 app.use(loginRouter);
 app.use(mainPageRouter);
+app.use(templatesRouter);
 // Ruta para el backend
 app.get('/api', (req, res) => {
 	res.json({ message: 'Hello from Express!' });
