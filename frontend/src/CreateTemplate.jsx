@@ -43,9 +43,7 @@ export default function CreateTemplate() {
 	function addQuestion() {
 		const question = {
 			question: '',
-			answer: '',
 			type: '',
-			id: 0,
 		};
 		setTemplate({ ...template, questions: [...template.questions, question] });
 	}
@@ -69,7 +67,9 @@ export default function CreateTemplate() {
 					tag={tag}
 				/>
 			)}
-			{section === 'questions' && <Questions />}
+			{section === 'questions' && (
+				<Questions addQuestion={addQuestion} questions={questions} />
+			)}
 			{section === 'results' && <Results />}
 			{section === 'aggregation' && <Aggregation />}
 		</main>
