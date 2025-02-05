@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useGlobalState } from './store/GlobalState';
 import { useEffect, useState } from 'react';
 import Search from './Search';
+import NavBar from './NavBar';
 
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
@@ -39,7 +40,6 @@ function App() {
 
 		fetchData();
 	}, []);
-
 	function handleSignOut() {
 		dispatch({ type: 'LOGOUT' });
 		navigate('/');
@@ -48,27 +48,17 @@ function App() {
 
 	return (
 		<div id="app__main">
-			<nav className="app__navbar">
-				{state.isAuth && <Link to="/user">Profile</Link>}
-				{state.isAuth ? (
-					<button onClick={handleSignOut}>sign out</button>
-				) : (
-					<Link to="/login" className="app__sign">
-						Sign In / Register
-					</Link>
-				)}
-				<Search />
-			</nav>
+			<NavBar />
 
 			<h1 className="app__h1">Welcome to the app</h1>
 			<section className="app__section">
-				<h2 className="app__h2">latest</h2>
+				<h2 className="app__h2">Latest</h2>
 			</section>
 			<section className="app__section">
-				<h2 className="app__h2">5 most popular</h2>
+				<h2 className="app__h2">Most popular</h2>
 			</section>
 			<section className="app__section">
-				<h2 className="app__h2">tag cloud</h2>
+				<h2 className="app__h2">Tags cloud</h2>
 			</section>
 		</div>
 	);

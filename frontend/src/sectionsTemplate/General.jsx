@@ -8,33 +8,56 @@ export default function General({
 	removeTag,
 }) {
 	return (
-		<section>
+		<section className="general">
 			{' '}
-			<div>
-				<label htmlFor="title">Title</label>
-				<input type="text" onChange={handleTitle} id="title" />
+			<div className="general__campo">
+				<label htmlFor="title" className="general__campo--label">
+					Title
+				</label>
+				<input
+					type="text"
+					onChange={handleTitle}
+					id="title"
+					className="general__campo--input"
+				/>
 			</div>
-			<div>
-				<label htmlFor="description">Description</label>
-				<textarea onChange={handleDescription} id="description"></textarea>
+			<div className="general__campo">
+				<label htmlFor="description" className="general__campo--label">
+					Description
+				</label>
+				<textarea
+					onChange={handleDescription}
+					id="description"
+					className="general__campo--input"
+				></textarea>
 			</div>
-			<div>
-				<div>Tags</div>
-				<label htmlFor="tags">Add</label>
-				<input type="text" onChange={handleTagInput} value={tag} id="tags" />
-				<button onClick={addTag}>Add</button>
-				<ul>
+			<div className="general__tags">
+				<p>Tags</p>
+				{/* 				<label htmlFor="tags" className="general__campo--label">
+					Add:
+				</label> */}
+				<input
+					type="text"
+					className="general__campo--input"
+					onChange={handleTagInput}
+					value={tag}
+					id="tags"
+				/>
+				<button onClick={addTag} className="general__tags--button">
+					Add
+				</button>
+				<ul className="general__tags--ul">
 					{tags.map((tag, idx) => {
 						return (
-							<li key={idx}>
+							<li key={idx} className="general__tags--li">
 								{tag} <button onClick={() => removeTag(idx)}>Remove</button>
 							</li>
 						);
 					})}
 				</ul>
 			</div>
-			<div>
-				<label htmlFor="restricted">
+			<div className="general__checkbox-div">
+				<label htmlFor="restricted" className="general__checkbox-div--label">
 					Do you want to restrict access to this template?
 				</label>
 				<input type="checkbox" />

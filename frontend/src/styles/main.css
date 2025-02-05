@@ -203,19 +203,32 @@ body {
   background-image: linear-gradient(to bottom, #289eec, blue);
   border-bottom: 1px solid blue;
   box-shadow: 0 2px 8px black;
+  position: sticky;
+  top: 0;
 }
 
 .app__sign {
   padding: 0.5rem 1rem;
-  border: 1px solid #000;
+  border: 0;
   border-radius: 5px;
   height: 2.5rem;
   margin: auto 0.5rem;
   color: white;
+  background-color: transparent;
+}
+
+.app__h1 {
+  text-align: center;
+  height: 10%;
+  padding-top: 1.5%;
 }
 
 .app__section {
   height: 25%;
+}
+
+.app__h2 {
+  margin-left: 5%;
 }
 
 .search {
@@ -232,6 +245,160 @@ body {
 }
 .search__input::placeholder {
   padding-left: 0.5rem;
+}
+
+.user__gray-area {
+  height: 10rem;
+  width: 100%;
+  background-color: #adacac;
+}
+
+.user {
+  position: relative;
+}
+
+.user__h1 {
+  text-align: start;
+  margin-left: 25rem;
+}
+
+.user__img {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  top: -5.5rem;
+  left: 10rem;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.user__section {
+  height: 30rem;
+  margin: 3rem 5rem;
+  border-top: 0;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 10rem 10rem auto;
+  grid-template-rows: 2.5rem auto;
+}
+
+.user__table--1 {
+  border: 1px solid #adacac;
+  border-top-right-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user__table--2 {
+  border: 1px solid #adacac;
+  border-top-right-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user__blank-space {
+  border-bottom: 1px solid #adacac;
+}
+
+.user__table {
+  grid-row: 2/3;
+  grid-column: 1/-1;
+  border: 1px solid #adacac;
+}
+
+.user__create {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  background-color: #1d41df;
+  border-radius: 8px;
+}
+
+.template {
+  background-color: gray;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.template__navbar {
+  height: 4rem;
+  width: 50%;
+  background-color: white;
+  border-radius: 8px;
+  margin: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.template__navbar--div {
+  height: fit-content;
+  margin: 0 1rem;
+}
+.template__button {
+  background-color: #2179ec;
+  color: white;
+  border-radius: 8px;
+  padding: 0.5rem;
+  border: 0;
+  box-shadow: 3px 3px 8px black;
+}
+
+.general {
+  width: 50%;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.general__campo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: start;
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+}
+.general__campo--label {
+  margin-right: 1rem;
+}
+.general__campo--input {
+  border: 0;
+  border-bottom: 1px solid gray;
+}
+.general__campo--input:focus {
+  outline: none;
+  outline-bottom: 2px soli blue;
+}
+.general__tags {
+  margin: 0.5rem;
+  text-align: start;
+}
+.general__tags--button {
+  margin-left: 1rem;
+}
+.general__tags--ul {
+  margin-top: 1rem;
+  width: 50%;
+}
+.general__tags--li {
+  position: relative;
+  padding: 0.5rem;
+}
+.general__tags--li button {
+  position: absolute;
+  right: 0;
+}
+.general__checkbox-div {
+  text-align: start;
+  margin: 0.5rem;
+  margin-top: 1.5rem;
+}
+.general__checkbox-div--label {
+  margin-right: 1rem;
 }
 
 /*# sourceMappingURL=main.css.map */

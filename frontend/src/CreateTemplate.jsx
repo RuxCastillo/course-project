@@ -3,6 +3,8 @@ import General from './sectionsTemplate/General';
 import Questions from './sectionsTemplate/Questions';
 import Results from './sectionsTemplate/Results';
 import Aggregation from './sectionsTemplate/Aggregation';
+import NavBar from './NavBar';
+import { handleSignOut } from './Utilities';
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
 	API_URL = '';
@@ -118,41 +120,69 @@ export default function CreateTemplate() {
 			console.error('Error:', error);
 		}
 	}
+	function handleSignOut() {
+		dispatch({ type: 'LOGOUT' });
+		navigate('/');
+		console.log(localStorage);
+	}
 
 	return (
-		<main>
-			<aside>
-				<div onClick={() => handleSection('general')}>General</div>
-				<div onClick={() => handleSection('questions')}>Questions</div>
-				<div onClick={() => handleSection('results')}>results</div>
-				<div onClick={() => handleSection('aggregation')}>
-					aggregation of results
-				</div>
-			</aside>
-			{section === 'general' && (
-				<General
-					handleTitle={handleTitle}
-					handleDescription={handleDescription}
-					addTag={addTag}
-					handleTagInput={handleTagInput}
-					tag={tag}
-					tags={template.tags}
-					removeTag={removeTag}
-				/>
-			)}
-			{section === 'questions' && (
-				<Questions
-					addQuestion={addQuestion}
-					questions={template.questions}
-					changeTypeQuestion={changeTypeQuestion}
-					changeQuestionText={changeQuestionText}
-					addCheckboxInQuestion={addCheckboxInQuestion}
-					removeCheckboxInQuestion={removeCheckboxInQuestion}
-				/>
-			)}
-			{section === 'results' && <Results />}
-			{section === 'aggregation' && <Aggregation />}
-			<button onClick={handleSubmit}>Save Template</button>
-		</main>
+		<>
+			<NavBar />
+			<main className="template">
+				<aside className="template__navbar">
+					<div
+						onClick={() => handleSection('general')}
+						className="template__navbar--div"
+					>
+						General
+					</div>
+					<div
+						onClick={() => handleSection('questions')}
+						className="template__navbar--div"
+					>
+						Questions
+					</div>
+					<div
+						onClick={() => handleSection('results')}
+						className="template__navbar--div"
+					>
+						Results
+					</div>
+					<div
+						onClick={() => handleSection('aggregation')}
+						className="template__navbar--div"
+					>
+						Aggregation of results
+					</div>
+				</aside>
+				{section === 'general' && (
+					<General
+						handleTitle={handleTitle}
+						handleDescription={handleDescription}
+						addTag={addTag}
+						handleTagInput={handleTagInput}
+						tag={tag}
+						tags={template.tags}
+						removeTag={removeTag}
+					/>
+				)}
+				{section === 'questions' && (
+					<Questions
+						addQuestion={addQuestion}
+						questions={template.questions}
+						changeTypeQuestion={changeTypeQuestion}
+						changeQuestionText={changeQuestionText}
+						addCheckboxInQuestion={addCheckboxInQuestion}
+						removeCheckboxInQuestion={removeCheckboxInQuestion}
+					/>
+				)}
+				{section === 'results' && <Results />}
+				{section === 'aggregation' && <Aggregation />}
+				<button onClick={handleSubmit} className="template__button">
+					Save Template
+				</button>
+			</main>
+		</>
 	);
 }
