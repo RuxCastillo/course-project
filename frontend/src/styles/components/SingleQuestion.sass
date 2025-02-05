@@ -1,0 +1,68 @@
+.question
+    background-color: white
+    margin: .5rem 0
+    border-radius: 8px
+    height: fit-content
+    padding: .5rem
+    position: relative
+    display: grid
+    grid-template-columns: 80% 20%
+    grid-template-rows: 1fr 1fr 
+    box-shadow: 1px 1px 8px black
+
+    &::before
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        background-color: blue
+        height: .25rem
+        z-index: 10
+        border-top-left-radius: 8px
+        border-top-right-radius: 8px
+
+    &__p
+        text-align: start
+        margin-bottom: .25rem
+
+    &__input
+        grid-column: 1/2
+        grid-row: 2/3
+        border: 0
+        border-bottom: 1px solid gray
+        margin-right: .5rem
+
+        &:focus
+            outline: none
+            border-bottom: 3px solid gray
+
+        &--checkbox
+            margin: .5rem 0
+            border: 0
+            border-bottom: 1px solid gray
+            margin-right: .5rem
+
+            &:focus
+                outline: 0
+                border-bottom: 3px solid gray
+
+    &__select
+        grid-column: 2/3
+        grid-row: 2/3
+        border: none
+
+        &:focus
+            outline: none
+
+    &__type
+        grid-column: 2/3
+        grid-row: 1/2
+        border: 0
+    
+    &__checkbox
+        grid-column: 1/2
+        text-align: start
+
+    &__button
+        margin: .5rem 0

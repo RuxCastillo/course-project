@@ -71,6 +71,7 @@ model Question {
   description   String?
   is_required   Boolean  @default(false)
   order         Int
+  options       String[]
   template      Template @relation(fields: [template_id], references: [id])
   answers       Answer[]
 }

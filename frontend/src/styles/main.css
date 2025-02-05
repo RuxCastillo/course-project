@@ -198,13 +198,19 @@ body {
 
 .app__navbar {
   display: flex;
-  justify-content: end;
+  justify-content: start;
   height: 5rem;
   background-image: linear-gradient(to bottom, #289eec, blue);
   border-bottom: 1px solid blue;
   box-shadow: 0 2px 8px black;
   position: sticky;
   top: 0;
+  z-index: 10;
+}
+
+.app__logo {
+  margin-right: auto;
+  max-width: 181px;
 }
 
 .app__sign {
@@ -248,7 +254,7 @@ body {
 }
 
 .user__gray-area {
-  height: 10rem;
+  height: 7.5rem;
   width: 100%;
   background-color: #adacac;
 }
@@ -273,7 +279,7 @@ body {
 }
 
 .user__section {
-  height: 30rem;
+  height: 25rem;
   margin: 3rem 5rem;
   border-top: 0;
   border-radius: 8px;
@@ -306,6 +312,7 @@ body {
   grid-row: 2/3;
   grid-column: 1/-1;
   border: 1px solid #adacac;
+  overflow: auto;
 }
 
 .user__create {
@@ -314,6 +321,11 @@ body {
   padding: 1rem;
   background-color: #1d41df;
   border-radius: 8px;
+}
+
+.user__section--table {
+  grid-column: 1/-1;
+  grid-row: 2/-1;
 }
 
 .template {
@@ -399,6 +411,114 @@ body {
 }
 .general__checkbox-div--label {
   margin-right: 1rem;
+}
+
+.questions {
+  width: 50%;
+  background-color: transparent;
+  border-radius: 8px;
+  min-height: 5rem;
+  margin-bottom: 1rem;
+}
+.questions__div {
+  background-color: white;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+.questions__button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+}
+
+.question {
+  background-color: white;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  height: fit-content;
+  padding: 0.5rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 1fr 1fr;
+  box-shadow: 1px 1px 8px black;
+}
+.question::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: blue;
+  height: 0.25rem;
+  z-index: 10;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.question__p {
+  text-align: start;
+  margin-bottom: 0.25rem;
+}
+.question__input {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  border: 0;
+  border-bottom: 1px solid gray;
+  margin-right: 0.5rem;
+}
+.question__input:focus {
+  outline: none;
+  border-bottom: 3px solid gray;
+}
+.question__input--checkbox {
+  margin: 0.5rem 0;
+  border: 0;
+  border-bottom: 1px solid gray;
+  margin-right: 0.5rem;
+}
+.question__input--checkbox:focus {
+  outline: 0;
+  border-bottom: 3px solid gray;
+}
+.question__select {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  border: none;
+}
+.question__select:focus {
+  outline: none;
+}
+.question__type {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  border: 0;
+}
+.question__checkbox {
+  grid-column: 1/2;
+  text-align: start;
+}
+.question__button {
+  margin: 0.5rem 0;
+}
+
+.userTable {
+  width: 100%;
+}
+.userTable__thead {
+  height: 3rem;
+}
+.userTable__tr {
+  height: 2rem;
+}
+
+.templateIcon {
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
 /*# sourceMappingURL=main.css.map */

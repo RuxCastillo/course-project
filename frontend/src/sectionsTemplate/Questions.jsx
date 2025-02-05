@@ -12,7 +12,7 @@ export default function Questions({
 	removeCheckboxInQuestion,
 }) {
 	return (
-		<section>
+		<section className="questions">
 			{questions.map((question, idx) => {
 				switch (question.type) {
 					case 'checkbox':
@@ -27,7 +27,7 @@ export default function Questions({
 								removeCheckboxInQuestion={removeCheckboxInQuestion}
 							/>
 						);
-					case 'multiple':
+					/* 					case 'multiple':
 						return (
 							<MultipleQuestion
 								key={idx}
@@ -46,7 +46,7 @@ export default function Questions({
 								changeQuestionText={changeQuestionText}
 								indice={idx}
 							/>
-						);
+						); */
 					default:
 						return (
 							<SingleQuestion
@@ -59,7 +59,11 @@ export default function Questions({
 						);
 				}
 			})}
-			<button onClick={addQuestion}>Add Question</button>
+			<div className="questions__div">
+				<button onClick={addQuestion} className="questions__button">
+					Add Question
+				</button>
+			</div>
 		</section>
 	);
 }

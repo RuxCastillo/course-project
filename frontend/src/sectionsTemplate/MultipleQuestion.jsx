@@ -5,7 +5,7 @@ export default function MultipleQuestion({
 	indice,
 }) {
 	return (
-		<div>
+		<div className="question">
 			<select
 				onChange={(e) => changeTypeQuestion(e.target.value, indice)}
 				value={question.type}

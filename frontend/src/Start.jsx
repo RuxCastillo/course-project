@@ -3,12 +3,19 @@ import background from './assets/background-blue.jpg';
 import Login from './Login';
 import Register from './Register';
 import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Start() {
+	const navigate = useNavigate();
+
 	const [signIn, setSignIn] = useState(true);
 
 	function handleSignIn() {
 		setSignIn((prevState) => !prevState);
+	}
+
+	function handleClickLogo() {
+		navigate('/');
 	}
 
 	return (

@@ -5,12 +5,21 @@ export default function SingleQuestion({
 	indice,
 }) {
 	return (
-		<div>
+		<div className="question">
+			<p className="question__p">Question:</p>
+			<input
+				type="text"
+				id="single"
+				value={question.question}
+				onChange={(e) => changeQuestionText(e.target.value, indice)}
+				className="question__input"
+			/>
+			<p className="question__type-answer">Type of answer</p>
 			<select
 				onChange={(e) => changeTypeQuestion(e.target.value, indice)}
 				value={question.type}
+				className="question__select"
 			>
-				type
 				<option value="single">Single</option>
 				<option value="multiple">Multiple</option>
 				<option value="number">Number</option>
@@ -18,13 +27,6 @@ export default function SingleQuestion({
 					Checkbox
 				</option>
 			</select>
-			<h2>Single Question</h2>
-			<input
-				type="text"
-				id="single"
-				value={question.question}
-				onChange={(e) => changeQuestionText(e.target.value, indice)}
-			/>
 		</div>
 	);
 }

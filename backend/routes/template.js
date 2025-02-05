@@ -40,10 +40,8 @@ router.post('/api/templates', async (req, res) => {
 						title: question.question,
 						question_type: question.type,
 						order: question.order,
-						answers: {
-							create: question.checkbox.map((checkbox) => ({
-								option: checkbox,
-							})),
+						options: {
+							set: question.checkbox || [],
 						},
 					})),
 				},
