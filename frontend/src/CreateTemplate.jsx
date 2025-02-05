@@ -42,6 +42,13 @@ export default function CreateTemplate() {
 		setTag('');
 	}
 
+	function removeTag(tagIdx) {
+		const updatedTags = [...template.tags];
+		updatedTags.splice(tagIdx, 1);
+		console.log(updatedTags);
+		setTemplate({ ...template, tags: updatedTags });
+	}
+
 	function handleTagInput(event) {
 		setTag(event.target.value);
 	}
@@ -52,13 +59,18 @@ export default function CreateTemplate() {
 			question: '',
 			type: 'single',
 			checkbox: [],
-			order: 0,
+			order: orderFunc(),
 		};
 		setTemplate({
 			...template,
 			questions: [...template.questions, question],
 		});
 		console.log(template.questions);
+	}
+
+	function orderFunc() {
+		const order = template.questions.length;
+		return order;
 	}
 
 	function changeTypeQuestion(str, idx) {
@@ -124,6 +136,8 @@ export default function CreateTemplate() {
 					addTag={addTag}
 					handleTagInput={handleTagInput}
 					tag={tag}
+					tags={template.tags}
+					removeTag={removeTag}
 				/>
 			)}
 			{section === 'questions' && (

@@ -47,14 +47,14 @@ function App() {
 	}
 
 	return (
-		<main className="app__main">
+		<div id="app__main">
 			<nav className="app__navbar">
 				{state.isAuth && <Link to="/user">Profile</Link>}
 				{state.isAuth ? (
 					<button onClick={handleSignOut}>sign out</button>
 				) : (
 					<Link to="/login" className="app__sign">
-						Sign In/Register
+						Sign In / Register
 					</Link>
 				)}
 				<Search />
@@ -70,7 +70,7 @@ function App() {
 			<section className="app__section">
 				<h2 className="app__h2">tag cloud</h2>
 			</section>
-		</main>
+		</div>
 	);
 }
 

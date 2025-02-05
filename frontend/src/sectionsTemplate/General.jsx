@@ -4,6 +4,8 @@ export default function General({
 	addTag,
 	handleTagInput,
 	tag,
+	tags,
+	removeTag,
 }) {
 	return (
 		<section>
@@ -21,6 +23,15 @@ export default function General({
 				<label htmlFor="tags">Add</label>
 				<input type="text" onChange={handleTagInput} value={tag} id="tags" />
 				<button onClick={addTag}>Add</button>
+				<ul>
+					{tags.map((tag, idx) => {
+						return (
+							<li key={idx}>
+								{tag} <button onClick={() => removeTag(idx)}>Remove</button>
+							</li>
+						);
+					})}
+				</ul>
 			</div>
 			<div>
 				<label htmlFor="restricted">
