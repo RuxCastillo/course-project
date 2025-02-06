@@ -7,6 +7,7 @@ import { GlobalStateProvider } from './store/GlobalState';
 import User from './User.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import CreateTemplate from './CreateTemplate.jsx';
+import Form from './sectionsTemplate/Form.jsx';
 
 createRoot(document.getElementById('root')).render(
 	<GlobalStateProvider>
@@ -30,6 +31,7 @@ createRoot(document.getElementById('root')).render(
 						</ProtectedRoute>
 					}
 				/>
+				<Route path="/form/:id" element={<Form />} />
 			</Routes>
 		</BrowserRouter>
 	</GlobalStateProvider>
