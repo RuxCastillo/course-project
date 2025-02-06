@@ -14,6 +14,7 @@ console.log(API_URL);
 export default function CreateTemplate() {
 	const [section, setSection] = useState('general');
 	const [tag, setTag] = useState('');
+	const [checkboxRestricted, setCheckboxRestricted] = useState(false);
 	const [template, setTemplate] = useState({
 		title: '',
 		description: '',
@@ -100,6 +101,10 @@ export default function CreateTemplate() {
 		setTemplate({ ...template, questions: updatedQuestions });
 	}
 
+	function onClickCheckboxRestricted() {
+		setCheckboxRestricted((prevState) => !prevState);
+	}
+
 	async function handleSubmit() {
 		const token = localStorage.getItem('token');
 		try {
@@ -165,6 +170,8 @@ export default function CreateTemplate() {
 						tag={tag}
 						tags={template.tags}
 						removeTag={removeTag}
+						checkboxRestricted={checkboxRestricted}
+						onClickCheckboxRestricted={onClickCheckboxRestricted}
 					/>
 				)}
 				{section === 'questions' && (

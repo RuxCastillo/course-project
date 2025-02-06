@@ -10,7 +10,6 @@ export default function NavBar() {
 	function handleSignOut() {
 		dispatch({ type: 'LOGOUT' });
 		navigate('/');
-		console.log(localStorage);
 	}
 
 	function handleClickLogo() {

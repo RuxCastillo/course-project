@@ -23,7 +23,12 @@ function Start() {
 			<section className="start__login">
 				<div className="h-1/8">
 					<h1 className="start__title">THE APP</h1>
-					<img src={logo} alt="" className="start__logo" />
+					<img
+						src={logo}
+						alt=""
+						className="start__logo"
+						onClick={handleClickLogo}
+					/>
 				</div>
 				{signIn ? (
 					<Login handleSignIn={handleSignIn} />

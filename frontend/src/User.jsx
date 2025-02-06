@@ -52,7 +52,7 @@ export default function User() {
 			<NavBar />
 			<div className="user__gray-area"></div>
 			<div className="user">
-				<h1 className="user__h1">User</h1>
+				<h1 className="user__h1">{state.user.username}</h1>
 				<img className="user__img" src="" alt="imagen" />
 			</div>
 			<section className="user__section">

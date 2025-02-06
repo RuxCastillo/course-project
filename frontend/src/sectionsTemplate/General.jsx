@@ -6,6 +6,8 @@ export default function General({
 	tag,
 	tags,
 	removeTag,
+	checkboxRestricted,
+	onClickCheckboxRestricted,
 }) {
 	return (
 		<section className="general">
@@ -60,7 +62,20 @@ export default function General({
 				<label htmlFor="restricted" className="general__checkbox-div--label">
 					Do you want to restrict access to this template?
 				</label>
-				<input type="checkbox" />
+				<input
+					type="checkbox"
+					value={checkboxRestricted}
+					onChange={onClickCheckboxRestricted}
+				/>
+				{checkboxRestricted && (
+					<>
+						<p>Search here for username or email:</p>
+						<div>
+							<input type="text" />
+							<button>Add</button>
+						</div>
+					</>
+				)}
 			</div>
 		</section>
 	);

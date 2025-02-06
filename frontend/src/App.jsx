@@ -40,7 +40,30 @@ function App() {
 			}
 		};
 
+		const fetchUserData = async () => {
+			const token = localStorage.getItem('token');
+			if (!token) {
+				console.error('No token found');
+				return;
+			}
+
+			try {
+				const response = await fetch(`${API_URL}/api/user/userData`, {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				});
+				const userData = await response.json();
+				console.log('la informacion del usuario', userData);
+				dispatch({ type: 'SET_USER_DATA', payload: userData });
+				console.log(state);
+			} catch (err) {
+				console.error('Error fetching user data:', err);
+			}
+		};
+
 		fetchData();
+		fetchUserData();
 	}, []);
 
 	return (
@@ -58,9 +81,19 @@ function App() {
 			</section>
 			<section className="app__section">
 				<h2 className="app__h2">Most popular</h2>
+				<div className="app__div">
+					{popularTemplates.map((template) => {
+						return <TemplateIcon template={template} />;
+					})}
+				</div>
 			</section>
 			<section className="app__section">
 				<h2 className="app__h2">Tags cloud</h2>
+				<div className="app__div">
+					{tags.map((tag) => {
+						return <div className="app__tag">{tag.name}</div>;
+					})}
+				</div>
 			</section>
 		</div>
 	);

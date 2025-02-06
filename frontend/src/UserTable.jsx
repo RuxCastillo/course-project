@@ -1,5 +1,4 @@
 export default function UserTable({ rows }) {
-	console.log(rows);
 	return (
 		<table className="userTable">
 			<thead className="userTable__thead">

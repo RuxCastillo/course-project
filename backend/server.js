@@ -13,6 +13,7 @@ import loginRouter from './routes/login.js';
 import mainPageRouter from './routes/mainpage.js';
 import templatesRouter from './routes/template.js';
 import userRouter from './routes/user.js';
+import userDataRouter from './routes/userData.js';
 
 env.config();
 
@@ -55,6 +56,7 @@ app.use(loginRouter);
 app.use(mainPageRouter);
 app.use(templatesRouter);
 app.use(userRouter);
+app.use(userDataRouter);
 // Ruta para el backend
 app.get('/api', (req, res) => {
 	res.json({ message: 'Hello from Express!' });

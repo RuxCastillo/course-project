@@ -3,6 +3,7 @@ import { createContext, useReducer, useContext } from 'react';
 const initialState = {
 	isAuth: false,
 	user: null,
+	token: null,
 };
 
 const reducer = (state, action) => {
@@ -11,7 +12,7 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				isAuth: true,
-				user: action.payload,
+				token: action.payload,
 			};
 		case 'LOGOUT':
 			localStorage.clear();
@@ -19,6 +20,11 @@ const reducer = (state, action) => {
 				...state,
 				isAuth: false,
 				user: null,
+			};
+		case 'SET_USER_DATA':
+			return {
+				...state,
+				user: action.payload,
 			};
 		default:
 			return state;
