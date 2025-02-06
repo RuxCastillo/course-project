@@ -540,4 +540,25 @@ body {
   min-width: 10rem;
 }
 
+.acr__section {
+  position: relative;
+}
+
+.acr__ul {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #383838;
+  border-top: 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+.acr__li {
+  margin: 0.25rem;
+  padding: 0.25rem;
+}
+.acr__li:hover {
+  background-color: #e0e0e0;
+}
+
 /*# sourceMappingURL=main.css.map */

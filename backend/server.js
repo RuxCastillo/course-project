@@ -14,6 +14,7 @@ import mainPageRouter from './routes/mainpage.js';
 import templatesRouter from './routes/template.js';
 import userRouter from './routes/user.js';
 import userDataRouter from './routes/userData.js';
+import searchRestricted from './routes/SearchRestricted.js';
 
 env.config();
 
@@ -57,6 +58,7 @@ app.use(mainPageRouter);
 app.use(templatesRouter);
 app.use(userRouter);
 app.use(userDataRouter);
+app.use(searchRestricted);
 // Ruta para el backend
 app.get('/api', (req, res) => {
 	res.json({ message: 'Hello from Express!' });

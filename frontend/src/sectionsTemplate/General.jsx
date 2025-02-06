@@ -1,3 +1,5 @@
+import AutoCompleteRestricted from '../AutoCompleteRestricted';
+
 export default function General({
 	handleTitle,
 	handleDescription,
@@ -8,6 +10,9 @@ export default function General({
 	removeTag,
 	checkboxRestricted,
 	onClickCheckboxRestricted,
+	addAllowedUser,
+	deleteAllowedUser,
+	allowedUsers,
 }) {
 	return (
 		<section className="general">
@@ -68,13 +73,11 @@ export default function General({
 					onChange={onClickCheckboxRestricted}
 				/>
 				{checkboxRestricted && (
-					<>
-						<p>Search here for username or email:</p>
-						<div>
-							<input type="text" />
-							<button>Add</button>
-						</div>
-					</>
+					<AutoCompleteRestricted
+						addAllowedUser={addAllowedUser}
+						deleteAllowedUser={deleteAllowedUser}
+						allowedUsers={allowedUsers}
+					/>
 				)}
 			</div>
 		</section>

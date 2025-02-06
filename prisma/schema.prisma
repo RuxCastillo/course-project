@@ -27,6 +27,7 @@ model User {
   likes         Like[]     @relation("UserLikes")
   theme         String     @default("light") // 'light' o 'dark'
   language      String     @default("en")    // 'en', 'es', 'pl', etc.
+  allowedTemplates  Template[]  @relation("AllowedUsers")
 }
 
 model Template {
@@ -45,6 +46,7 @@ model Template {
   templateTags  TemplateTag[]
   comments      Comment[]
   likes         Like[]
+  allowedUsers  User[]      @relation("AllowedUsers")
 }
 
 model TemplateTag {

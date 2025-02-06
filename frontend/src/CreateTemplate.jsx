@@ -22,6 +22,7 @@ export default function CreateTemplate() {
 		is_public: true,
 		questions: [],
 		results: [],
+		allowedUsers: [],
 		aggregation: '',
 		topic: 'string de topic',
 		create: true,
@@ -105,6 +106,22 @@ export default function CreateTemplate() {
 		setCheckboxRestricted((prevState) => !prevState);
 	}
 
+	function addAllowedUser(user) {
+		if (user && !template.allowedUsers.includes(user)) {
+			setTemplate({
+				...template,
+				allowedUsers: [...template.allowedUsers, user],
+			});
+		}
+	}
+
+	function deleteAllowedUser(user) {
+		const updatedAllowedUsers = template.allowedUsers.filter(
+			(allowedUser) => allowedUser !== user
+		);
+		setTemplate({ ...template, allowedUsers: updatedAllowedUsers });
+	}
+
 	async function handleSubmit() {
 		const token = localStorage.getItem('token');
 		try {
@@ -172,6 +189,9 @@ export default function CreateTemplate() {
 						removeTag={removeTag}
 						checkboxRestricted={checkboxRestricted}
 						onClickCheckboxRestricted={onClickCheckboxRestricted}
+						addAllowedUser={addAllowedUser}
+						deleteAllowedUser={deleteAllowedUser}
+						allowedUsers={template.allowedUsers}
 					/>
 				)}
 				{section === 'questions' && (
