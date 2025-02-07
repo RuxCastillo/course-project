@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import { useGlobalState } from './store/GlobalState';
 import { useEffect, useState } from 'react';
 import UserTable from './UserTable';
+import ImageUploader from './imageUploader';
 
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
@@ -47,13 +48,37 @@ export default function User() {
 		fetchUserData();
 	}, []);
 
+	const handleImageUpload = async (imageUrl) => {
+		try {
+			const token = localStorage.getItem('token');
+			const updateResponse = await fetch(
+				`${API_URL}/api/user/updateProfileImage`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${token}`,
+					},
+					body: JSON.stringify({ imageUrl }),
+				}
+			);
+			const updateData = await updateResponse.json();
+
+			// Actualizar el estado global con la nueva imagen de perfil
+			dispatch({ type: 'UPDATE_PROFILE_IMAGE', payload: imageUrl });
+		} catch (error) {
+			console.error('Error updating profile image:', error);
+		}
+	};
+
 	return (
 		<main>
 			<NavBar />
 			<div className="user__gray-area"></div>
 			<div className="user">
 				<h1 className="user__h1">{state.user.username}</h1>
-				<img className="user__img" src="" alt="imagen" />
+				<img className="user__img" src={state.user.profileImage} alt="imagen" />
+				<ImageUploader onUpload={handleImageUpload} />
 			</div>
 			<section className="user__section">
 				<div className="user__table--1" onClick={handleClickChangeTable}>

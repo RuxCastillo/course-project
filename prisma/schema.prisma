@@ -28,6 +28,7 @@ model User {
   theme         String     @default("light") // 'light' o 'dark'
   language      String     @default("en")    // 'en', 'es', 'pl', etc.
   allowedTemplates  Template[]  @relation("AllowedUsers")
+  profileImage String?
 }
 
 model Template {

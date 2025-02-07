@@ -4,6 +4,7 @@ const initialState = {
 	isAuth: false,
 	user: null,
 	token: null,
+	profileImage: null,
 };
 
 const reducer = (state, action) => {
@@ -25,6 +26,11 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				user: action.payload,
+			};
+		case 'UPDATE_PROFILE_IMAGE':
+			return {
+				...state,
+				profileImage: action.payload,
 			};
 		default:
 			return state;
