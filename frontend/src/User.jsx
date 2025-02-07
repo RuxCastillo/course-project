@@ -5,6 +5,7 @@ import { useGlobalState } from './store/GlobalState';
 import { useEffect, useState } from 'react';
 import UserTable from './UserTable';
 import ImageUploader from './imageUploader';
+import form from './assets/form.jpg';
 
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
@@ -74,11 +75,19 @@ export default function User() {
 	return (
 		<main>
 			<NavBar />
-			<div className="user__gray-area"></div>
+			<div className="user__gray-area">
+				<img src={form} alt="form" className="user__background-form" />
+			</div>
 			<div className="user">
 				<h1 className="user__h1">{state.user.username}</h1>
-				<img className="user__img" src={state.user.profileImage} alt="imagen" />
-				<ImageUploader onUpload={handleImageUpload} />
+				<div className="user__relative">
+					<img
+						className="user__img"
+						src={state.user.profileImage}
+						alt="imagen"
+					/>
+					<ImageUploader onUpload={handleImageUpload} />
+				</div>
 			</div>
 			<section className="user__section">
 				<div className="user__table--1" onClick={handleClickChangeTable}>
