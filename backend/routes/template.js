@@ -5,7 +5,8 @@ import jwt from 'jsonwebtoken';
 const router = express.Router();
 
 router.post('/api/templates', async (req, res) => {
-	const { title, description, tags, is_public, questions, topic } = req.body;
+	const { title, description, tags, is_public, questions, topic, image_url } =
+		req.body;
 	const token = req.headers.authorization?.split(' ')[1];
 
 	if (!token) {
@@ -22,6 +23,7 @@ router.post('/api/templates', async (req, res) => {
 				description,
 				is_public,
 				topic,
+				image_url,
 				creator: {
 					connect: { id: userId },
 				},

@@ -1,4 +1,5 @@
 import AutoCompleteRestricted from '../AutoCompleteRestricted';
+import ImageUploader from '../imageUploader';
 
 export default function General({
 	handleTitle,
@@ -13,6 +14,7 @@ export default function General({
 	addAllowedUser,
 	deleteAllowedUser,
 	allowedUsers,
+	handleImageUpload,
 }) {
 	return (
 		<section className="general">
@@ -37,6 +39,10 @@ export default function General({
 					id="description"
 					className="general__campo--input"
 				></textarea>
+			</div>
+			<div className="general__campo">
+				<p>Select an image</p>
+				<ImageUploader onUpload={handleImageUpload} />
 			</div>
 			<div className="general__tags">
 				<p>Tags</p>

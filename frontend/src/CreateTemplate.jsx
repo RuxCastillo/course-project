@@ -26,6 +26,7 @@ export default function CreateTemplate() {
 		aggregation: '',
 		topic: 'string de topic',
 		create: true,
+		image_url: '',
 	});
 
 	function handleSection(section) {
@@ -148,6 +149,10 @@ export default function CreateTemplate() {
 		console.log(localStorage);
 	}
 
+	const handleImageUpload = async (imageUrl) => {
+		setTemplate({ ...template, image_url: imageUrl });
+	};
+
 	return (
 		<>
 			<NavBar />
@@ -192,6 +197,7 @@ export default function CreateTemplate() {
 						addAllowedUser={addAllowedUser}
 						deleteAllowedUser={deleteAllowedUser}
 						allowedUsers={template.allowedUsers}
+						handleImageUpload={handleImageUpload}
 					/>
 				)}
 				{section === 'questions' && (
