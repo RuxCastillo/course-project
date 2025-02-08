@@ -21,6 +21,9 @@ router.get('/api/user/data', async (req, res) => {
 
 		const forms = await prisma.form.findMany({
 			where: { user_id: userId },
+			include: {
+				template: true,
+			},
 		});
 
 		res.json({ templates, forms });

@@ -11,6 +11,10 @@ export default function UserTable({ rows }) {
 			</thead>
 			<tbody>
 				{rows.map((row, index) => {
+					if (row.template) {
+						row = row.template;
+					}
+
 					return (
 						<tr className="userTable__tr">
 							<td>{row.title}</td>
