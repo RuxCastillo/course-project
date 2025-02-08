@@ -18,6 +18,7 @@ import searchRestricted from './routes/SearchRestricted.js';
 import searchtemplatesRouter from './routes/searchtemplates.js';
 import updateProfileImageRouter from './routes/updateProfileImage.js';
 import authRouter from './routes/auth.js';
+import formsRouter from './routes/forms.js';
 
 env.config();
 
@@ -65,6 +66,7 @@ app.use(searchRestricted);
 app.use(searchtemplatesRouter);
 app.use(updateProfileImageRouter);
 app.use(authRouter);
+app.use(formsRouter);
 // Ruta para el backend
 app.get('/api', (req, res) => {
 	res.json({ message: 'Hello from Express!' });

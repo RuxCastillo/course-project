@@ -96,7 +96,7 @@ model Answer {
   question_id    Int
   answer_text    String?
   answer_number  Int?
-  answer_checkbox Boolean?
+  answer_checkbox Boolean[]
   form           Form     @relation(fields: [form_id], references: [id])
   question       Question @relation(fields: [question_id], references: [id])
 }
