@@ -251,6 +251,19 @@ body {
   margin-right: 0.5rem;
 }
 
+.resultTags {
+  margin-left: 7%;
+  margin-top: 1rem;
+  width: 50%;
+}
+.resultTags__title {
+  font-size: 1.5rem;
+}
+.resultTags__row {
+  display: flex;
+  justify-content: space-between;
+}
+
 .search {
   padding: 1rem;
   margin: auto 0;

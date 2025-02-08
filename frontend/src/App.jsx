@@ -18,6 +18,7 @@ function App() {
 	const [lastTemplates, setLatestTemplates] = useState([]);
 	const [popularTemplates, setPopularTemplates] = useState([]);
 	const [tags, setTags] = useState([]);
+	const [resultTags, setResultTags] = useState([]);
 	console.log(state);
 
 	useEffect(() => {
@@ -74,6 +75,7 @@ function App() {
 			}
 			const data = await response.json();
 			console.log(data);
+			setResultTags(data);
 		} catch (err) {
 			console.error('Error fetching search by tag: ', err);
 		}
@@ -110,6 +112,20 @@ function App() {
 								onClick={() => handleClickInTag(tag.name)}
 							>
 								{tag.name}
+							</div>
+						);
+					})}
+				</div>
+				<div className="resultTags">
+					{resultTags.length > 0 && (
+						<p className="resultTags__title">Result tag:</p>
+					)}
+					{resultTags.map((result) => {
+						return (
+							<div className="resultTags__row">
+								<p>{result.title}</p>
+								<p>{result.topic}</p>
+								<p>{result.description}</p>
 							</div>
 						);
 					})}
