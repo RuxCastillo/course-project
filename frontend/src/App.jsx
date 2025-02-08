@@ -66,6 +66,19 @@ function App() {
 		fetchUserData();
 	}, []);
 
+	async function handleClickInTag(name) {
+		try {
+			const response = await fetch(`${API_URL}/api/searchByTag?name=${name}`);
+			if (!response.ok) {
+				throw new Error('Failed to fetch search by tag');
+			}
+			const data = await response.json();
+			console.log(data);
+		} catch (err) {
+			console.error('Error fetching search by tag: ', err);
+		}
+	}
+
 	return (
 		<div id="app__main">
 			<NavBar />
@@ -91,7 +104,14 @@ function App() {
 				<h2 className="app__h2">Tags cloud</h2>
 				<div className="app__div">
 					{tags.map((tag) => {
-						return <div className="app__tag">{tag.name}</div>;
+						return (
+							<div
+								className="app__tag"
+								onClick={() => handleClickInTag(tag.name)}
+							>
+								{tag.name}
+							</div>
+						);
 					})}
 				</div>
 			</section>

@@ -19,6 +19,7 @@ import searchtemplatesRouter from './routes/searchtemplates.js';
 import updateProfileImageRouter from './routes/updateProfileImage.js';
 import authRouter from './routes/auth.js';
 import formsRouter from './routes/forms.js';
+import searchByTagRouter from './routes/searchByTag.js';
 
 env.config();
 
@@ -67,6 +68,7 @@ app.use(searchtemplatesRouter);
 app.use(updateProfileImageRouter);
 app.use(authRouter);
 app.use(formsRouter);
+app.use(searchByTagRouter);
 // Ruta para el backend
 app.get('/api', (req, res) => {
 	res.json({ message: 'Hello from Express!' });
