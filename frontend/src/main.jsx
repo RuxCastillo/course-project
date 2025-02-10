@@ -8,6 +8,8 @@ import User from './User.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import CreateTemplate from './CreateTemplate.jsx';
 import Form from './sectionsTemplate/Form.jsx';
+import './store/i18n.jsx';
+import { useTranslation } from 'react-i18next';
 
 createRoot(document.getElementById('root')).render(
 	<GlobalStateProvider>

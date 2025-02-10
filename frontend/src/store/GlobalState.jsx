@@ -32,6 +32,14 @@ const reducer = (state, action) => {
 				...state,
 				profileImage: action.payload,
 			};
+		case 'SET_LANGUAGE':
+			return {
+				...state,
+				user: {
+					...state.user,
+					language: action.payload,
+				},
+			};
 		default:
 			return state;
 	}

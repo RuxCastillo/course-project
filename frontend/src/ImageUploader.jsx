@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
@@ -7,6 +8,7 @@ if (import.meta.env.PROD) {
 
 export default function ImageUploader({ onUpload }) {
 	const [uploading, setUploading] = useState(false);
+	const { t } = useTranslation();
 
 	const handleImageUpload = async (event) => {
 		const file = event.target.files[0];
@@ -40,7 +42,7 @@ export default function ImageUploader({ onUpload }) {
 	return (
 		<div>
 			<input type="file" onChange={handleImageUpload} />
-			{uploading && <p>Uploading...</p>}
+			{uploading && <p>{t('uploading')}</p>}
 		</div>
 	);
 }

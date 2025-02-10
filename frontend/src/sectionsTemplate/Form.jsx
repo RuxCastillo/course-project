@@ -5,6 +5,8 @@ import AnswerSingle from './AnswerSingle';
 import AnswerCheckbox from './AnswerCheckbox';
 import AnswerMultiple from './AnswerMultiple';
 import NavBar from '../NavBar';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
@@ -12,9 +14,11 @@ if (import.meta.env.PROD) {
 }
 
 export default function form() {
+	const navigate = useNavigate();
 	const { id } = useParams();
 	const [template, setTemplate] = useState(null);
 	const [form, setForm] = useState({});
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		async function fetchTemplate() {
@@ -34,7 +38,7 @@ export default function form() {
 	}, [id]);
 
 	if (!template) {
-		return <div>Loading...</div>;
+		return <div>{t('loading')}</div>;
 	}
 
 	console.log(template);
@@ -70,8 +74,10 @@ export default function form() {
 			});
 			if (response.ok) {
 				console.log('Form submitted successfully');
+				navigate('/');
 			} else {
-				console.error('Failed to submit form');
+				const errorData = await response.json();
+				console.error('Failed to submit form', errorData);
 			}
 		} catch (error) {
 			console.error('Error submitting form:', error);
@@ -151,7 +157,7 @@ export default function form() {
 								);
 							}
 						})}
-						<button type="submit">Enviar formulario</button>
+						<button type="submit">{t('send_form')}</button>
 					</form>
 				</section>
 			</main>

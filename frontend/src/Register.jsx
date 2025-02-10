@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
 	API_URL = '';
@@ -7,6 +8,7 @@ console.log(API_URL);
 
 export default function Register({ handleSignIn }) {
 	const [showPassword, setShowPassword] = useState(false);
+	const { t } = useTranslation();
 
 	function handleShowPassword() {
 		setShowPassword((prevState) => !prevState);
@@ -48,8 +50,8 @@ export default function Register({ handleSignIn }) {
 		<>
 			<form className="login__form" onSubmit={handleSubmit}>
 				<div className="login__title">
-					<p>Start your journey</p>
-					<h2 className="login__sign">Sign up to The App</h2>
+					<p>{t('start_journey')}</p>
+					<h2 className="login__sign">{t('sign_up_in_app')}</h2>
 				</div>
 				<div className="login__inputs">
 					<label htmlFor="email" className="login__label">
@@ -65,7 +67,7 @@ export default function Register({ handleSignIn }) {
 				</div>
 				<div className="login__inputs">
 					<label htmlFor="username" className="login__label">
-						Username
+						{t('usename')}
 					</label>
 					<input
 						type="text"
@@ -77,7 +79,7 @@ export default function Register({ handleSignIn }) {
 				</div>
 				<div className="login__inputs">
 					<label htmlFor="password" className="login__label">
-						Password
+						{t('password')}
 					</label>
 					<input
 						type={showPassword ? 'text' : 'password'}
@@ -91,10 +93,10 @@ export default function Register({ handleSignIn }) {
 						onClick={handleShowPassword}
 					></i>
 				</div>
-				<button className="login__button">Sign up</button>
+				<button className="login__button">{t('sign_up')}</button>
 			</form>
 			<div className="login__account">
-				<p className="login__account--p">Already have an account? </p>
+				<p className="login__account--p">{t('already_account')}</p>
 				<a
 					href=""
 					className="login__account--a"
@@ -104,7 +106,7 @@ export default function Register({ handleSignIn }) {
 					}}
 				>
 					{' '}
-					Log in
+					{t('log_in')}
 				</a>
 			</div>
 		</>

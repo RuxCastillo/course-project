@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import debounce from 'lodash/debounce';
+import { useTranslation } from 'react-i18next';
 
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
@@ -13,6 +14,7 @@ export default function AutoCompleteRestricted({
 }) {
 	const [query, setQuery] = useState('');
 	const [results, setResults] = useState([]);
+	const { t } = useTranslation();
 
 	const fetchResults = useCallback(
 		debounce(async (query) => {
@@ -50,7 +52,7 @@ export default function AutoCompleteRestricted({
 
 	return (
 		<section className="acr__section">
-			<p>Search here for username or email:</p>
+			<p>{t('search_username')}</p>
 			<div>
 				<input
 					type="text"
@@ -60,7 +62,7 @@ export default function AutoCompleteRestricted({
 					className="general__campo--input"
 				/>
 				<button className="general__tags--button" onClick={handleClickAdd}>
-					Add
+					{t('add')}
 				</button>
 			</div>
 			{results.length > 0 && (

@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import General from './sectionsTemplate/General';
 import Questions from './sectionsTemplate/Questions';
 import Results from './sectionsTemplate/Results';
 import Aggregation from './sectionsTemplate/Aggregation';
 import NavBar from './NavBar';
 import { handleSignOut } from './Utilities';
+import { useGlobalState } from './store/GlobalState';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
 	API_URL = '';
@@ -13,7 +16,9 @@ console.log(API_URL);
 
 export default function CreateTemplate() {
 	const [section, setSection] = useState('general');
+	const { state, dispatch } = useGlobalState();
 	const [tag, setTag] = useState('');
+	const { t } = useTranslation();
 	const [checkboxRestricted, setCheckboxRestricted] = useState(false);
 	const [template, setTemplate] = useState({
 		title: '',
@@ -153,6 +158,12 @@ export default function CreateTemplate() {
 		setTemplate({ ...template, image_url: imageUrl });
 	};
 
+	useEffect(() => {
+		if (state.user && state.user.language) {
+			i18n.changeLanguage(state.user.language);
+		}
+	}, [state.user]);
+
 	return (
 		<>
 			<NavBar />
@@ -162,25 +173,25 @@ export default function CreateTemplate() {
 						onClick={() => handleSection('general')}
 						className="template__navbar--div"
 					>
-						General
+						{t('general')}
 					</div>
 					<div
 						onClick={() => handleSection('questions')}
 						className="template__navbar--div"
 					>
-						Questions
+						{t('questions')}
 					</div>
 					<div
 						onClick={() => handleSection('results')}
 						className="template__navbar--div"
 					>
-						Results
+						{t('results')}
 					</div>
 					<div
 						onClick={() => handleSection('aggregation')}
 						className="template__navbar--div"
 					>
-						Aggregation of results
+						{t('aggregation')}
 					</div>
 				</aside>
 				{section === 'general' && (
@@ -213,7 +224,7 @@ export default function CreateTemplate() {
 				{section === 'results' && <Results />}
 				{section === 'aggregation' && <Aggregation />}
 				<button onClick={handleSubmit} className="template__button">
-					Save Template
+					{t('save_template')}
 				</button>
 			</main>
 		</>

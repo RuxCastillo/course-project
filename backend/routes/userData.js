@@ -23,6 +23,8 @@ router.get('/api/user/userData', async (req, res) => {
 				email: true,
 				role: true,
 				profileImage: true,
+				theme: true,
+				language: true,
 			},
 		});
 

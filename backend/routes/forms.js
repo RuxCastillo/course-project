@@ -16,6 +16,21 @@ router.post('/api/forms', async (req, res) => {
 		const userId = decoded.id;
 		const { template_id, answers } = req.body;
 
+		// Verificar si el usuario ya tiene un formulario para este template
+		const existingForm = await prisma.form.findFirst({
+			where: {
+				template_id,
+				user_id: userId,
+			},
+		});
+
+		if (existingForm) {
+			console.log('existingform en accion');
+			return res
+				.status(400)
+				.json({ error: 'User already has a form for this template' });
+		}
+
 		const newForm = await prisma.form.create({
 			data: {
 				template_id,

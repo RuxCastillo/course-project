@@ -1,12 +1,16 @@
+import { useTranslation } from 'react-i18next';
+
 export default function UserTable({ rows }) {
+	const { t } = useTranslation();
+
 	return (
 		<table className="userTable">
 			<thead className="userTable__thead">
 				<tr>
-					<th className="userTable__th">Title</th>
-					<th className="userTable__th">Topic</th>
-					<th className="userTable__th">Public</th>
-					<th className="userTable__th">description</th>
+					<th className="userTable__th">{t('title')}</th>
+					<th className="userTable__th">{t('topic')}</th>
+					<th className="userTable__th">{t('public')}</th>
+					<th className="userTable__th">{t('description')}</th>
 				</tr>
 			</thead>
 			<tbody>

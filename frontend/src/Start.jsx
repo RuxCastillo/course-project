@@ -4,9 +4,11 @@ import Login from './Login';
 import Register from './Register';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function Start() {
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	const [signIn, setSignIn] = useState(true);
 

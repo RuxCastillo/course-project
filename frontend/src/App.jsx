@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import Search from './Search';
 import NavBar from './NavBar';
 import TemplateIcon from './TemplateIcon';
+import { useTranslation } from 'react-i18next';
+import i18n from './store/i18n';
 
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
@@ -19,6 +21,7 @@ function App() {
 	const [popularTemplates, setPopularTemplates] = useState([]);
 	const [tags, setTags] = useState([]);
 	const [resultTags, setResultTags] = useState([]);
+	const { t } = useTranslation();
 	console.log(state);
 
 	useEffect(() => {
@@ -67,6 +70,12 @@ function App() {
 		fetchUserData();
 	}, []);
 
+	useEffect(() => {
+		if (state.user && state.user.language) {
+			i18n.changeLanguage(state.user.language);
+		}
+	}, [state.user]);
+
 	async function handleClickInTag(name) {
 		try {
 			const response = await fetch(`${API_URL}/api/searchByTag?name=${name}`);
@@ -85,9 +94,9 @@ function App() {
 		<div id="app__main">
 			<NavBar />
 
-			<h1 className="app__h1">Welcome to the app</h1>
+			<h1 className="app__h1">{t('app_welcome')}</h1>
 			<section className="app__section">
-				<h2 className="app__h2">Latest</h2>
+				<h2 className="app__h2">{t('app_latest')}</h2>
 				<div className="app__div">
 					{lastTemplates.map((template) => {
 						return <TemplateIcon template={template} />;
@@ -95,7 +104,7 @@ function App() {
 				</div>
 			</section>
 			<section className="app__section">
-				<h2 className="app__h2">Most popular</h2>
+				<h2 className="app__h2">{t('app_most_popular')}</h2>
 				<div className="app__div">
 					{popularTemplates.map((template) => {
 						return <TemplateIcon template={template} />;
@@ -103,7 +112,7 @@ function App() {
 				</div>
 			</section>
 			<section className="app__section">
-				<h2 className="app__h2">Tags cloud</h2>
+				<h2 className="app__h2">{t('app_tags_cloud')}</h2>
 				<div className="app__div">
 					{tags.map((tag) => {
 						return (
@@ -118,7 +127,7 @@ function App() {
 				</div>
 				<div className="resultTags">
 					{resultTags.length > 0 && (
-						<p className="resultTags__title">Result tag:</p>
+						<p className="resultTags__title">{t('app_result_tag')}</p>
 					)}
 					{resultTags.map((result) => {
 						return (

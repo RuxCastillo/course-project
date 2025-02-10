@@ -1,6 +1,7 @@
 import { useGlobalState } from './store/GlobalState';
 import { Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
@@ -11,6 +12,7 @@ const ProtectedRoute = ({ children }) => {
 	const { state, dispatch } = useGlobalState();
 	const [isLoading, setIsLoading] = useState(true);
 	const [isValidToken, setIsValidToken] = useState(false);
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		const checkTokenAndFetchUserData = async () => {

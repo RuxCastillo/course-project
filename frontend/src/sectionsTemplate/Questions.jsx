@@ -2,6 +2,7 @@ import SingleQuestion from './SingleQuestion';
 import MultipleQuestion from './MultipleQuestion';
 import NumberQuestion from './NumberQuestion';
 import CheckboxQuestion from './CheckboxQuestion';
+import { useTranslation } from 'react-i18next';
 
 export default function Questions({
 	questions,
@@ -11,6 +12,7 @@ export default function Questions({
 	addCheckboxInQuestion,
 	removeCheckboxInQuestion,
 }) {
+	const { t } = useTranslation();
 	return (
 		<section className="questions">
 			{questions.map((question, idx) => {
@@ -61,7 +63,7 @@ export default function Questions({
 			})}
 			<div className="questions__div">
 				<button onClick={addQuestion} className="questions__button">
-					Add Question
+					{t('add_question')}
 				</button>
 			</div>
 		</section>

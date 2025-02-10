@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalState } from './store/GlobalState';
+import { useTranslation } from 'react-i18next';
 
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
@@ -15,6 +16,7 @@ export default function Login({ handleSignIn }) {
 	const [rememberMe, setRememberMe] = useState(false);
 	const navigate = useNavigate();
 	const { state, dispatch } = useGlobalState();
+	const { t } = useTranslation();
 
 	function handleShowPassword() {
 		setShowPassword((prevState) => !prevState);
@@ -50,8 +52,8 @@ export default function Login({ handleSignIn }) {
 		<>
 			<form className="login__form" onSubmit={handleSubmit}>
 				<div className="login__title">
-					<p>Start your journey</p>
-					<h2 className="login__sign">Sign in to The App</h2>
+					<p>{t('start_journey')}</p>
+					<h2 className="login__sign">{t('sign_in_app')}</h2>
 				</div>
 				<div className="login__inputs">
 					<label htmlFor="email" className="login__label">
@@ -68,7 +70,7 @@ export default function Login({ handleSignIn }) {
 				</div>
 				<div className="login__inputs">
 					<label htmlFor="password" className="login__label">
-						Password
+						{t('password')}
 					</label>
 					<input
 						type={showPassword ? 'text' : 'password'}
@@ -91,14 +93,14 @@ export default function Login({ handleSignIn }) {
 						checked={rememberMe}
 						onChange={(e) => setRememberMe(e.target.checked)}
 					/>
-					<label htmlFor="remember">Remember me</label>
+					<label htmlFor="remember">{t('remember_me')}</label>
 				</div>
 				<button to="/table" className="login__button">
-					Sign In
+					{t('sign-in')}
 				</button>
 			</form>
 			<div className="login__account">
-				<p className="login__account--p">Don't have an account? </p>
+				<p className="login__account--p">{t('dont_have_account')} </p>
 				<a
 					href=""
 					className="login__account--a"
@@ -108,7 +110,7 @@ export default function Login({ handleSignIn }) {
 					}}
 				>
 					{' '}
-					Sign up
+					{t('sign_up')}
 				</a>
 			</div>
 		</>

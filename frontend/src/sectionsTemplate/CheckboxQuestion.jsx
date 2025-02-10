@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function CheckboxQuestion({
 	changeTypeQuestion,
@@ -9,6 +10,7 @@ export default function CheckboxQuestion({
 	removeCheckboxInQuestion,
 }) {
 	const [newCheckbox, setNewCheckbox] = useState('');
+	const { t } = useTranslation();
 
 	const handleAddCheckbox = () => {
 		addCheckboxInQuestion(newCheckbox, indice);
@@ -16,7 +18,7 @@ export default function CheckboxQuestion({
 	};
 	return (
 		<div className="question">
-			<p className="question__p">Checkbox Question</p>
+			<p className="question__p">{t('checkboxQuestion_title')}</p>
 			<input
 				type="text"
 				value={question.question}
@@ -30,26 +32,24 @@ export default function CheckboxQuestion({
 				placeholder="New checkbox option"
 				className="question__input--checkbox"
 			/>
-			<p className="question__type">Type of answer:</p>
+			<p className="question__type">{t('type_of_answer')}</p>
 			<select
 				onChange={(e) => changeTypeQuestion(e.target.value, indice)}
 				value={question.type}
 				className="question__select"
 			>
-				<option value="single">Single</option>
-				<option value="multiple">Multiple</option>
-				<option value="number">Number</option>
+				<option value="single">{t('single')}</option>
+				<option value="multiple">{t('multiple')}</option>
+				<option value="number">{t('number')}</option>
 				<option value="checkbox" selected>
-					Checkbox
+					{t('checkbox')}
 				</option>
 			</select>
 			<button onClick={handleAddCheckbox} className="question__button">
-				Add option
+				{t('add_option')}
 			</button>
 			{question.checkbox.length > 0 && (
-				<p className="question__p">
-					These will be the answers in checkbox format:
-				</p>
+				<p className="question__p">{t('answers_checkbox')}</p>
 			)}
 			{console.log(question)}
 			<div className="question__checkbox">
@@ -58,7 +58,7 @@ export default function CheckboxQuestion({
 						<div key={idx}>
 							<input type="text" value={checkbox} readOnly />
 							<button onClick={() => removeCheckboxInQuestion(idx, indice)}>
-								Delete
+								{t('delete')}
 							</button>
 						</div>
 					);

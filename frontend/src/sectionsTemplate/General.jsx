@@ -1,5 +1,6 @@
 import AutoCompleteRestricted from '../AutoCompleteRestricted';
 import ImageUploader from '../imageUploader';
+import { useTranslation } from 'react-i18next';
 
 export default function General({
 	handleTitle,
@@ -16,12 +17,13 @@ export default function General({
 	allowedUsers,
 	handleImageUpload,
 }) {
+	const { t } = useTranslation();
 	return (
 		<section className="general">
 			{' '}
 			<div className="general__campo">
 				<label htmlFor="title" className="general__campo--label">
-					Title
+					{t('title')}
 				</label>
 				<input
 					type="text"
@@ -32,7 +34,7 @@ export default function General({
 			</div>
 			<div className="general__campo">
 				<label htmlFor="description" className="general__campo--label">
-					Description
+					{t('description')}
 				</label>
 				<textarea
 					onChange={handleDescription}
@@ -41,11 +43,11 @@ export default function General({
 				></textarea>
 			</div>
 			<div className="general__campo">
-				<p>Select an image</p>
+				<p>{t('select_image')}</p>
 				<ImageUploader onUpload={handleImageUpload} />
 			</div>
 			<div className="general__tags">
-				<p>Tags</p>
+				<p>{t('tags')}</p>
 				{/* 				<label htmlFor="tags" className="general__campo--label">
 					Add:
 				</label> */}
@@ -57,7 +59,7 @@ export default function General({
 					id="tags"
 				/>
 				<button onClick={addTag} className="general__tags--button">
-					Add
+					{t('add')}
 				</button>
 				<ul className="general__tags--ul">
 					{tags.map((tag, idx) => {
@@ -71,7 +73,7 @@ export default function General({
 			</div>
 			<div className="general__checkbox-div">
 				<label htmlFor="restricted" className="general__checkbox-div--label">
-					Do you want to restrict access to this template?
+					{t('restrict_access')}
 				</label>
 				<input
 					type="checkbox"

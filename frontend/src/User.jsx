@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import UserTable from './UserTable';
 import ImageUploader from './imageUploader';
 import form from './assets/form.jpg';
+import { useTranslation } from 'react-i18next';
 
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
@@ -18,6 +19,9 @@ export default function User() {
 	const [templates, setTemplates] = useState([]);
 	const [forms, setForms] = useState([]);
 	const [tableState, setTableState] = useState(true);
+	const { t } = useTranslation();
+
+	console.log(state);
 
 	function handleClickChangeTable() {
 		setTableState((prevState) => !prevState);
@@ -91,10 +95,10 @@ export default function User() {
 			</div>
 			<section className="user__section">
 				<div className="user__table--1" onClick={handleClickChangeTable}>
-					Template
+					{t('template')}
 				</div>
 				<div className="user__table--2" onClick={handleClickChangeTable}>
-					Forms
+					{t('forms')}
 				</div>
 				<div className="user__blank-space"></div>
 				<section className="user__table">
@@ -106,7 +110,7 @@ export default function User() {
 				</section>
 			</section>
 			<Link to="/createTemplate" className="user__create">
-				+ Create Template
+				{t('create_template')}
 			</Link>
 		</main>
 	);

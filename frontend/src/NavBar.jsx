@@ -2,10 +2,13 @@ import Search from './Search';
 import { useGlobalState } from './store/GlobalState';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from './assets/the app.png';
+import Settings from './Settings';
+import { useTranslation } from 'react-i18next';
 
 export default function NavBar() {
 	const { state, dispatch } = useGlobalState();
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	function handleSignOut() {
 		dispatch({ type: 'LOGOUT' });
@@ -21,19 +24,20 @@ export default function NavBar() {
 			<img src={logo} alt="" className="app__logo" onClick={handleClickLogo} />
 			{state.isAuth && (
 				<Link to="/user" className="app__sign">
-					Profile
+					{t('profile')}
 				</Link>
 			)}
 			{state.isAuth ? (
 				<button onClick={handleSignOut} className="app__sign">
-					Sign out
+					{t('sign_out')}
 				</button>
 			) : (
 				<Link to="/login" className="app__sign">
-					Sign In / Register
+					{t('sign_in_register')}
 				</Link>
 			)}
 			<Search />
+			<Settings />
 		</nav>
 	);
 }
