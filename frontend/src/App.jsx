@@ -91,7 +91,7 @@ function App() {
 	}
 
 	return (
-		<div id="app__main">
+		<div id="app__main" className="">
 			<NavBar />
 
 			<h1 className="app__h1">{t('app_welcome')}</h1>

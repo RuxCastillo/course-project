@@ -21,6 +21,7 @@ import authRouter from './routes/auth.js';
 import formsRouter from './routes/forms.js';
 import searchByTagRouter from './routes/searchByTag.js';
 import changeLangRouter from './routes/changeLang.js';
+import changeThemeRouter from './routes/changeTheme.js';
 
 env.config();
 
@@ -71,6 +72,7 @@ app.use(authRouter);
 app.use(formsRouter);
 app.use(searchByTagRouter);
 app.use(changeLangRouter);
+app.use(changeThemeRouter);
 // Ruta para el backend
 app.get('/api', (req, res) => {
 	res.json({ message: 'Hello from Express!' });

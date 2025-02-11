@@ -61,13 +61,46 @@ export default function Settings() {
 		}
 	}
 
+	function toggleTheme() {
+		const newTheme = state.user.theme === 'light' ? 'dark-mode' : 'light';
+		dispatch({ type: 'SET_THEME', payload: newTheme });
+		if (newTheme === 'light') {
+			document.body.classList.remove('dark-mode');
+		} else {
+			document.body.classList.add('dark-mode');
+		}
+		if (state.isAuth) {
+			updateThemeInDB({ theme: newTheme });
+		}
+	}
+
+	async function updateThemeInDB(obj) {
+		try {
+			const response = await fetch(`${API_URL}/api/changeTheme`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${state.token}`,
+				},
+				body: JSON.stringify(obj),
+			});
+			if (!response.ok) {
+				throw new Error('Failed to update theme');
+			}
+			const data = await response.json();
+			console.log('user theme updated succesfully in db', data);
+		} catch (err) {
+			console.error('Error updating theme', err);
+		}
+	}
+
 	return (
 		<div>
 			<button onClick={clickOnSettings}>Settings</button>
 			{openSettings && (
 				<div>
 					<button onClick={clickOnLang}>lang</button>
-					<button>theme</button>
+					<button onClick={toggleTheme}>theme</button>
 				</div>
 			)}
 		</div>

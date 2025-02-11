@@ -1,4 +1,5 @@
 import { createContext, useReducer, useContext } from 'react';
+import { useEffect } from 'react';
 
 const initialState = {
 	isAuth: false,
@@ -40,6 +41,14 @@ const reducer = (state, action) => {
 					language: action.payload,
 				},
 			};
+		case 'SET_THEME':
+			return {
+				...state,
+				user: {
+					...state.user,
+					theme: action.payload,
+				},
+			};
 		default:
 			return state;
 	}
@@ -49,6 +58,18 @@ const GlobalState = createContext();
 
 export const GlobalStateProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
+
+	useEffect(() => {
+		if (state.user && state.user.theme) {
+			dispatch({ type: 'SET_THEME, payload: state.user.theme' });
+			const nombreClase = 'dark-mode';
+			if (state.user.theme === 'light') {
+				document.body.classList.remove('dark-mode');
+			} else {
+				document.body.classList.add('dark-mode');
+			}
+		}
+	}, [state.user]);
 
 	return (
 		<GlobalState.Provider value={{ state, dispatch }}>
