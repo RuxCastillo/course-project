@@ -675,4 +675,34 @@ textarea {
   margin-bottom: 0.25rem;
 }
 
+.no-results {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  width: 50%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.results {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 50%;
+  margin-bottom: 1rem;
+}
+.results__total {
+  margin-bottom: 1rem;
+}
+.results__table {
+  width: 100%;
+}
+.results__th {
+  border: 1px solid var(--secondary-color);
+}
+.results__tr {
+  border: 1px solid var(--secondary-color);
+}
+
 /*# sourceMappingURL=main.css.map */

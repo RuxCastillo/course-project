@@ -14,6 +14,7 @@ export default function Questions({
 	template,
 }) {
 	const { t } = useTranslation();
+	console.log(template);
 	return (
 		<section className="questions">
 			{questions.map((question, idx) => {

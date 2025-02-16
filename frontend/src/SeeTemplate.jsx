@@ -174,11 +174,6 @@ export default function CreateTemplate() {
 			console.error('Error:', error);
 		}
 	}
-	function handleSignOut() {
-		dispatch({ type: 'LOGOUT' });
-		navigate('/');
-		console.log(localStorage);
-	}
 
 	const handleImageUpload = async (imageUrl) => {
 		setTemplate({ ...template, image_url: imageUrl });
@@ -249,8 +244,8 @@ export default function CreateTemplate() {
 						template={template}
 					/>
 				)}
-				{section === 'results' && <Results />}
-				{section === 'aggregation' && <Aggregation />}
+				{section === 'results' && <Results template={template} />}
+				{section === 'aggregation' && <Aggregation template={template} />}
 				<button onClick={handleSubmit} className="template__button">
 					{t('save_template')}
 				</button>

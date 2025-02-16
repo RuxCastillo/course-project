@@ -16,7 +16,12 @@ router.get('/api/fetchTemplate/:id', async (req, res) => {
 					},
 				},
 				questions: true,
-				forms: true,
+				forms: {
+					include: {
+						answers: true,
+						user: true,
+					},
+				},
 				comments: true,
 				allowedUsers: true,
 			},
@@ -32,6 +37,15 @@ router.get('/api/fetchTemplate/:id', async (req, res) => {
 			tags: template.templateTags.map((tt) => tt.tag.name),
 			is_public: template.is_public,
 			questions: template.questions,
+			results: template.forms.map((form) => ({
+				id: form.id,
+				created_at: form.created_at,
+				updated_at: form.updated_at,
+				answers: form.answers,
+				user: {
+					username: form.user.username,
+				},
+			})),
 			allowedUsers: template.allowedUsers,
 			aggregation: template.aggregation,
 			topic: template.topic,
