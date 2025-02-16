@@ -11,6 +11,7 @@ export default function Questions({
 	changeQuestionText,
 	addCheckboxInQuestion,
 	removeCheckboxInQuestion,
+	template,
 }) {
 	const { t } = useTranslation();
 	return (

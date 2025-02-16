@@ -11,7 +11,6 @@ export default function Settings() {
 	const { state, dispatch } = useGlobalState();
 	const [openSettings, setOpenSettings] = useState(false);
 	const { i18n } = useTranslation();
-	const { t } = useTranslation();
 
 	function clickOnSettings() {
 		setOpenSettings((prevState) => !prevState);
@@ -95,12 +94,18 @@ export default function Settings() {
 	}
 
 	return (
-		<div>
-			<button onClick={clickOnSettings}>Settings</button>
+		<div className="settings">
+			<i onClick={clickOnSettings} className="fas fa-gear fa-2x"></i>
 			{openSettings && (
-				<div>
-					<button onClick={clickOnLang}>lang</button>
-					<button onClick={toggleTheme}>theme</button>
+				<div className="settings__menu">
+					<i
+						onClick={clickOnLang}
+						className="fas fa-language fa-2x settings__menu--icon"
+					></i>
+					<i
+						onClick={toggleTheme}
+						className="fas fa-palette fa-2x settings__menu--icon"
+					></i>
 				</div>
 			)}
 		</div>

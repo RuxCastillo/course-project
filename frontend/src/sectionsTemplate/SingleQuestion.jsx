@@ -12,14 +12,14 @@ export default function SingleQuestion({
 			<input
 				type="text"
 				id="single"
-				value={question.question}
+				value={question.title}
 				onChange={(e) => changeQuestionText(e.target.value, indice)}
 				className="question__input"
 			/>
 			<p className="question__type-answer">{t('type_of_answer')}</p>
 			<select
 				onChange={(e) => changeTypeQuestion(e.target.value, indice)}
-				value={question.type}
+				value={question.question_type}
 				className="question__select"
 			>
 				<option value="single">{t('single')}</option>

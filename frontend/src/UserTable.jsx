@@ -1,7 +1,13 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserTable({ rows }) {
 	const { t } = useTranslation();
+	const navigate = useNavigate();
+
+	function handleClickRow(str) {
+		navigate(`/template/${str}`);
+	}
 
 	return (
 		<table className="userTable">
@@ -20,7 +26,10 @@ export default function UserTable({ rows }) {
 					}
 
 					return (
-						<tr className="userTable__tr">
+						<tr
+							className="userTable__tr"
+							onClick={() => handleClickRow(row.id)}
+						>
 							<td>{row.title}</td>
 							<td>{row.topic}</td>
 							<td>{row.is_public ? 'Yes' : 'No'}</td>

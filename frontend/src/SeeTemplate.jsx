@@ -8,6 +8,8 @@ import { handleSignOut } from './Utilities';
 import { useGlobalState } from './store/GlobalState';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
+import { useParams } from 'react-router-dom';
+
 let API_URL = import.meta.env.VITE_API_URL;
 if (import.meta.env.PROD) {
 	API_URL = '';
@@ -15,6 +17,7 @@ if (import.meta.env.PROD) {
 console.log(API_URL);
 
 export default function CreateTemplate() {
+	const { id } = useParams();
 	const [section, setSection] = useState('general');
 	const { state, dispatch } = useGlobalState();
 	const [tag, setTag] = useState('');
@@ -33,6 +36,29 @@ export default function CreateTemplate() {
 		create: true,
 		image_url: '',
 	});
+
+	useEffect(() => {
+		async function fetchTemplate() {
+			try {
+				const response = await fetch(`${API_URL}/api/fetchTemplate/${id}`);
+				if (!response.ok) {
+					throw new Error('Failed to fetch template');
+				}
+				const data = await response.json();
+				setTemplate((prevState) => {
+					return {
+						...prevState,
+						...data,
+					};
+				});
+				console.log(template);
+			} catch (error) {
+				console.error('Error fetching template', error);
+			}
+		}
+
+		fetchTemplate();
+	}, [id]);
 
 	function handleSection(section) {
 		setSection(section);

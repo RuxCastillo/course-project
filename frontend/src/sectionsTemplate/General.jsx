@@ -16,6 +16,7 @@ export default function General({
 	deleteAllowedUser,
 	allowedUsers,
 	handleImageUpload,
+	template,
 }) {
 	const { t } = useTranslation();
 	return (
@@ -30,6 +31,7 @@ export default function General({
 					onChange={handleTitle}
 					id="title"
 					className="general__campo--input"
+					value={template.title}
 				/>
 			</div>
 			<div className="general__campo">
@@ -40,6 +42,7 @@ export default function General({
 					onChange={handleDescription}
 					id="description"
 					className="general__campo--input"
+					value={template.description}
 				></textarea>
 			</div>
 			<div className="general__campo">

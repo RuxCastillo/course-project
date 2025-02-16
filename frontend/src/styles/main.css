@@ -74,10 +74,12 @@ body {
 
 input {
   background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 textarea {
   background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .start__main {
@@ -655,6 +657,22 @@ textarea {
 }
 .answer__checkbox--input {
   margin-right: 0.5rem;
+}
+
+.settings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  position: relative;
+}
+.settings__menu {
+  position: absolute;
+  bottom: -150%;
+  background-color: blue;
+}
+.settings__menu--icon {
+  margin-bottom: 0.25rem;
 }
 
 /*# sourceMappingURL=main.css.map */

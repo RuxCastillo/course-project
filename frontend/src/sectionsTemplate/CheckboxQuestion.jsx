@@ -21,7 +21,7 @@ export default function CheckboxQuestion({
 			<p className="question__p">{t('checkboxQuestion_title')}</p>
 			<input
 				type="text"
-				value={question.question}
+				value={question.title}
 				onChange={(e) => changeQuestionText(e.target.value, indice)}
 				className="question__input"
 			/>
@@ -35,7 +35,7 @@ export default function CheckboxQuestion({
 			<p className="question__type">{t('type_of_answer')}</p>
 			<select
 				onChange={(e) => changeTypeQuestion(e.target.value, indice)}
-				value={question.type}
+				value={question.question_type}
 				className="question__select"
 			>
 				<option value="single">{t('single')}</option>

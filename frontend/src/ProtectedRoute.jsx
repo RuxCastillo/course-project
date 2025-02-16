@@ -61,7 +61,7 @@ const ProtectedRoute = ({ children }) => {
 	}, [dispatch]);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <div>{t('loading')}</div>;
 	}
 
 	if (!isValidToken) {

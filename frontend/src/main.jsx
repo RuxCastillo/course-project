@@ -10,6 +10,7 @@ import CreateTemplate from './CreateTemplate.jsx';
 import Form from './sectionsTemplate/Form.jsx';
 import './store/i18n.jsx';
 import { useTranslation } from 'react-i18next';
+import SeeTemplate from './SeeTemplate.jsx';
 
 createRoot(document.getElementById('root')).render(
 	<GlobalStateProvider>
@@ -34,6 +35,14 @@ createRoot(document.getElementById('root')).render(
 					}
 				/>
 				<Route path="/form/:id" element={<Form />} />
+				<Route
+					path="/template/:id"
+					element={
+						<ProtectedRoute>
+							<SeeTemplate />
+						</ProtectedRoute>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	</GlobalStateProvider>
