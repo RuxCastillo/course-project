@@ -157,8 +157,8 @@ export default function CreateTemplate() {
 	async function handleSubmit() {
 		const token = localStorage.getItem('token');
 		try {
-			const response = await fetch(`${API_URL}/api/templates`, {
-				method: 'POST',
+			const response = await fetch(`${API_URL}/api/templates/${id}`, {
+				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 					Authorization: `Bearer ${token}`,
@@ -166,7 +166,7 @@ export default function CreateTemplate() {
 				body: JSON.stringify(template),
 			});
 			if (response.ok) {
-				console.log('Template saved successfully');
+				console.log('Template updated successfully');
 			} else {
 				console.error('Failed to save template');
 			}

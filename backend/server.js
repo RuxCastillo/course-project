@@ -23,6 +23,7 @@ import searchByTagRouter from './routes/searchByTag.js';
 import changeLangRouter from './routes/changeLang.js';
 import changeThemeRouter from './routes/changeTheme.js';
 import fetchTemplateRouter from './routes/fetchTemplate.js';
+import updateTemplateRouter from './routes/updateTemplate.js';
 
 env.config();
 
@@ -75,6 +76,7 @@ app.use(searchByTagRouter);
 app.use(changeLangRouter);
 app.use(changeThemeRouter);
 app.use(fetchTemplateRouter);
+app.use(updateTemplateRouter);
 // Ruta para el backend
 app.get('/api', (req, res) => {
 	res.json({ message: 'Hello from Express!' });

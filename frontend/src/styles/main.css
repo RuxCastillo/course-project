@@ -665,14 +665,17 @@ textarea {
   align-items: center;
   margin: 1rem;
   position: relative;
+  color: white;
 }
 .settings__menu {
   position: absolute;
-  bottom: -150%;
+  bottom: -170%;
   background-color: blue;
+  padding: 0.5rem;
 }
 .settings__menu--icon {
   margin-bottom: 0.25rem;
+  color: white;
 }
 
 .no-results {
@@ -703,6 +706,18 @@ textarea {
 }
 .results__tr {
   border: 1px solid var(--secondary-color);
+}
+
+.aggregation__section {
+  margin-bottom: 0.5rem;
+  width: 50%;
+}
+
+.aggregation {
+  background-color: var(--primary-color);
+  min-height: 5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 /*# sourceMappingURL=main.css.map */
